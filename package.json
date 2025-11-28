@@ -1,0 +1,22 @@
+{
+  "name": "safechat",
+  "version": "1.0.0",
+  "description": "Safe and Secure Chatting Platform with Relative Nearby Alert",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev",
+    "install": "npm install && cd server && npm install"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "keywords": [
+    "chat",
+    "secure",
+    "authentication",
+    "proximity"
+  ],
+  "author": "",
+  "license": "MIT"
+}
