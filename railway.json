@@ -1,4 +1,9 @@
 {
-  "buildCommand": "cd server && npm install",
-  "startCommand": "cd server && npm start"
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "nixpacks"
+  },
+  "deploy": {
+    "restartPolicyType": "on_failure"
+  }
 }
