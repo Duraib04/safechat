@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: safechat-backend
-    env: node
-    plan: free
-    buildCommand: cd server && npm ci --omit=dev
-    startCommand: node server/server.js
-    rootDir: ./
