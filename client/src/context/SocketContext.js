@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback, useRef, useEffect } from 'react';
+import React, { createContext, useState, useCallback, useRef } from 'react';
 import io from 'socket.io-client';
 
 export const SocketContext = createContext();
@@ -18,7 +18,6 @@ export const SocketProvider = ({ children }) => {
   
   // Refs for geolocation
   const watchIdRef = useRef(null);
-  const locationUpdateIntervalRef = useRef(null);
 
   const initializeSocket = useCallback((userId) => {
     const newSocket = io('http://localhost:5000', {

@@ -5,6 +5,13 @@ const ProximityAlert = ({ alert, onDismiss }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [hasPlayed, setHasPlayed] = useState(false);
 
+  const handleDismiss = () => {
+    setIsVisible(false);
+    if (onDismiss) {
+      onDismiss(alert.id);
+    }
+  };
+
   useEffect(() => {
     // Play notification sound on first render
     if (!hasPlayed) {
@@ -18,7 +25,7 @@ const ProximityAlert = ({ alert, onDismiss }) => {
     }, 10000);
 
     return () => clearTimeout(dismissTimer);
-  }, []);
+  }, [hasPlayed, handleDismiss]);
 
   const playNotificationSound = () => {
     try {
@@ -40,13 +47,6 @@ const ProximityAlert = ({ alert, onDismiss }) => {
       oscillator.stop(audioContext.currentTime + 0.5);
     } catch (error) {
       console.warn('Could not play notification sound:', error);
-    }
-  };
-
-  const handleDismiss = () => {
-    setIsVisible(false);
-    if (onDismiss) {
-      onDismiss(alert.id);
     }
   };
 

@@ -17,7 +17,6 @@ const Dashboard = () => {
     proximityAlerts,
     toggleLocationSharing,
     dismissProximityAlert,
-    initializeSocket,
   } = useContext(SocketContext);
   
   const [conversations, setConversations] = useState([]);
@@ -57,6 +56,7 @@ const Dashboard = () => {
         toggleLocationSharing(user._id);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, socket]);
 
   const fetchConversations = async () => {
@@ -158,15 +158,16 @@ const Dashboard = () => {
     }
   };
 
-  const updateRelative = async (phoneNumber, updates) => {
-    try {
-      const response = await axios.put(`/api/relatives/${phoneNumber}`, updates);
-      setRelatives(relatives.map(r => r.phoneNumber === phoneNumber ? response.data.relative : r));
-    } catch (error) {
-      console.error('Failed to update relative:', error);
-      alert(error.response?.data?.message || 'Failed to update relative');
-    }
-  };
+  // Note: updateRelative function available for future feature enhancement
+  // const updateRelative = async (phoneNumber, updates) => {
+  //   try {
+  //     const response = await axios.put(`/api/relatives/${phoneNumber}`, updates);
+  //     setRelatives(relatives.map(r => r.phoneNumber === phoneNumber ? response.data.relative : r));
+  //   } catch (error) {
+  //     console.error('Failed to update relative:', error);
+  //     alert(error.response?.data?.message || 'Failed to update relative');
+  //   }
+  // };
 
   const fetchAlertHistory = async () => {
     try {
