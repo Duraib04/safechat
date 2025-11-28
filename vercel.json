@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "client/package.json",
@@ -6,44 +7,28 @@
       "config": {
         "distDir": "build"
       }
+    },
+    {
+      "src": "server/server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/server/server.js"
+    },
+    {
+      "src": "/socket.io/(.*)",
+      "dest": "/server/server.js"
+    },
+    {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "dest": "/client/build/static/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
-    }
-  ],
-  "env": {
-    "REACT_APP_API_BASE_URL": "@react_app_api_base_url",
-    "REACT_APP_SOCKET_URL": "@react_app_socket_url"
-  },
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "dest": "/client/build/index.html"
     }
   ]
 }
