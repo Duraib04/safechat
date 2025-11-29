@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: safechat-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: mongodb+srv://safechat_user:Mydbpassword@durai.jdfhl5j.mongodb.net/?appName=Durai
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: https://safechat-duraib04.vercel.app
+      - key: PORT
+        value: 10000

@@ -20,7 +20,8 @@ export const SocketProvider = ({ children }) => {
   const watchIdRef = useRef(null);
 
   const initializeSocket = useCallback((userId) => {
-    const newSocket = io('http://localhost:5000', {
+    const socketUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const newSocket = io(socketUrl, {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
